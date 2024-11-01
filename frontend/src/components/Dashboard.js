@@ -1,8 +1,11 @@
 // Dashboard.js
 import React, { useState } from "react";
 // import CountryFilter from './CountryFilter';
-import MetricInsights from "./MetricInsights"; // Importing the new MetricInsights component
-
+import IntensityChart from "./IntensityChart"; // Importing the new MetricInsights component
+import RelevanceLikelihoodMixedChart from "./RelevanceLikelihoodMixedChart";
+import SectorSharePieChart from "./SectorSharePieChart";
+import CountryRegionChoropleth from "./CountryRegionChoropleth";
+import TopicWordCloud from "./TopicWordCloud";
 const Dashboard = () => {
   return (
     <div>
@@ -13,7 +16,11 @@ const Dashboard = () => {
         Dashboard
       </h1>
       
-      <MetricInsights /> 
+      <IntensityChart /> 
+      <RelevanceLikelihoodMixedChart />
+      <SectorSharePieChart />
+      <CountryRegionChoropleth />
+      <TopicWordCloud />
     </div>
   );
 };

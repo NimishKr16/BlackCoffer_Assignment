@@ -9,7 +9,7 @@ Chart.register(...registerables);
 // Helper to sort and format month names
 const monthOrder = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-const MetricInsights = () => {
+const IntensityChart = () => {
     const [data, setData] = useState([]); // State to store the processed data
     const [loading, setLoading] = useState(true); // State to track loading status
     const chartRef = useRef(null); // Reference to the chart component
@@ -122,11 +122,11 @@ const MetricInsights = () => {
     return (
         <div>
             <h2>Metric Insights: Monthly Average Intensity</h2>
-            
+
             {/* // Render the Line chart component with the provided data and options */}
             <Line ref={chartRef} data={chartData} options={chartOptions} /> 
         </div>
     );
 };
 
-export default MetricInsights;
+export default IntensityChart;
