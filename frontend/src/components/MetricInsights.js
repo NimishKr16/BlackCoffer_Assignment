@@ -10,15 +10,15 @@ Chart.register(...registerables);
 const monthOrder = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const MetricInsights = () => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const chartRef = useRef(null);
+    const [data, setData] = useState([]); // State to store the processed data
+    const [loading, setLoading] = useState(true); // State to track loading status
+    const chartRef = useRef(null); // Reference to the chart component
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5500/api/insights'); // Adjust API endpoint as needed
-                const result = await response.json();
+                const response = await fetch('http://localhost:5500/api/insights'); // Fetch data from the API
+                const result = await response.json(); // Parse the response as JSON
                 console.log('Fetched raw data:', result);
 
                 // Process data: group by month, calculate average intensity
@@ -43,21 +43,21 @@ const MetricInsights = () => {
                 });
 
                 console.log('Averaged data by month:', averagedData);
-                setData(averagedData);
-                setLoading(false);
+                setData(averagedData); // Update the state with the processed data
+                setLoading(false); // Set loading status to false
             } catch (error) {
                 console.error('Error fetching data:', error);
-                setLoading(false);
+                setLoading(false); // Set loading status to false in case of an error
             }
         };
 
-        fetchData();
+        fetchData(); // Call the fetchData function to fetch and process the data
 
         return () => {
             if (chartRef.current) {
                 const chartInstance = chartRef.current.chartInstance;
                 if (chartInstance) {
-                    chartInstance.destroy();
+                    chartInstance.destroy(); // Destroy the chart instance when the component is unmounted
                 }
             }
         };
@@ -117,12 +117,14 @@ const MetricInsights = () => {
         },
     };
 
-    if (loading) return <div>Loading data...</div>;
+    if (loading) return <div>Loading data...</div>; // Show loading message if data is still loading
 
     return (
         <div>
             <h2>Metric Insights: Monthly Average Intensity</h2>
-            <Line ref={chartRef} data={chartData} options={chartOptions} />
+            
+            {/* // Render the Line chart component with the provided data and options */}
+            <Line ref={chartRef} data={chartData} options={chartOptions} /> 
         </div>
     );
 };
